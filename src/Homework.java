@@ -1,7 +1,7 @@
 
 import javax.swing.SwingUtilities;
 
-public class homework {
+public class Homework {
 
     public static void main(String[] args) {
 

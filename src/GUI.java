@@ -15,7 +15,12 @@ public class GUI implements ActionListener{
     private static String button4text = "Удалить деталь из базы данных";
 
 
-    JTextArea textView = new JTextArea();
+    JTextArea textView = new JTextArea(300, 6);
+
+    JScrollPane scroll = new JScrollPane(textView);
+
+    //getContentPane().add(scroll);
+    //setLocationRelativeTo ( null );
 
     // поле на панели для ввода пользователем id
     JTextField idField = new JTextField();
@@ -34,9 +39,7 @@ public class GUI implements ActionListener{
     public Component createComponents() {
 
         JButton button1 = new JButton(button1text);
-        button1.setMnemonic(KeyEvent.VK_F5);
         button1.setActionCommand("Button 1 was pressed!");
-
         JButton button2 = new JButton(button2text);
         button2.setActionCommand("Button 2 was pressed!");
         JButton button3 = new JButton(button3text);
@@ -53,13 +56,20 @@ public class GUI implements ActionListener{
 
         idField.setText("Тут необходимо вписать id детали!");
 
+        //scroll.setBounds(10, 10, 400, 300);
+
+        textView.setEditable(false); // set textArea non-editable
+        scroll = new JScrollPane(textView);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+
         JPanel pane = new JPanel(new GridLayout(0, 1));
         pane.add(button1);
         pane.add(button2);
         pane.add(button3);
         pane.add(button4);
         pane.add(idField);
-        pane.add(textView);
+        pane.add(scroll);
 
         pane.setBorder(BorderFactory.createEmptyBorder(
                 10, //top
@@ -191,12 +201,12 @@ public class GUI implements ActionListener{
 
         //Create and set up the window.
         JFrame frame = new JFrame("Homework");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         GUI app = new GUI();
         Component contents = app.createComponents();
         frame.getContentPane().add(contents, BorderLayout.CENTER);
-        frame.setBounds(300, 100, 500, 600);
+        frame.setBounds(300, 50, 500, 600);
 
         //Display the window.
         frame.setVisible(true);
